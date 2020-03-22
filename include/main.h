@@ -17,5 +17,5 @@ float *scan_cart_y; //stores yi in cartesian form of ith valid range data
 
 bool firstscan;
 
-Map m;
+// Map m;
 #endif

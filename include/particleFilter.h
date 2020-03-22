@@ -9,35 +9,35 @@
 class Particle
 {
 private:
-  int pose_count;
+  int pose_count; //set in constructor
   Map map;
   double *poses;       //queue size will be 3 times pose_count
   int curr_pose_index; //will be initialised to 0 in constructor
-  ros::Publisher pose_pub;
 
 public:
+  Particle(int pose_count, int map_h, int map_w, int map_res);
   void motionSample(double, double, double);
   ~Particle();
 };
+
 class ParticleFilter
 {
 private:
   int particle_count;
-  Particle *particles; //will have particle_count no. of particles
+  std::vector<Particle> particles; //will have particle_count no. of particles
   Sampler sampler;
   double *weights; // weights of particles
   int particle_count_eff;
-  int paricle_eff_thresh;
-  double alpha[6] = {0.1, 0.1, 0.1, 0.1, 0.1}; //TODO: move this to constuctor
+  int particle_eff_thresh;
+  double alpha[6];
   // double prev_pose[3];
   // double curr_pose[3];
-  // ros::Publisher pose_pub;
 
 public:
-  ParticleFilter()
-  {
-  }
+  ParticleFilter(int count, int pose_count, int thresh, int error_param[],
+                 int map_w, int map_h, double map_res);
   void motionSample(double *odom);
   // void resampleParticles()
+  ~ParticleFilter();
 };
 #endif

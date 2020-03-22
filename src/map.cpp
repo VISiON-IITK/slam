@@ -10,8 +10,8 @@ void Map::init(int map_w, int map_h, int map_res)
   map.info.resolution = map_res;
 
   //origin stores positon and pose of origin(cell (0, 0)) in real-world
-  map.info.origin.position.x = map_w / 2;
-  map.info.origin.position.y = map_w / 2;
+  map.info.origin.position.x = -map_w / 2;
+  map.info.origin.position.y = -map_h / 2;
   map.info.origin.position.z = 0;
 
   map.info.origin.orientation.x = 0; //orientation is stores as quaternion: learn!!
@@ -19,7 +19,7 @@ void Map::init(int map_w, int map_h, int map_res)
   map.info.origin.orientation.z = 0;
   map.info.origin.orientation.w = 1;
 
-  map.data.resize(map.info.height * map.info.width); //resize() in c++?
+  map.data.resize(map.info.height * map.info.width);
   map.data.assign(map.info.height * map.info.width, -1);
 }
 

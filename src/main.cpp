@@ -32,15 +32,15 @@ int main(int argc, char **argv)
   ros::Subscriber scan = nh.subscribe("scan", 1, scanCallback);
   ros::Rate loop_rate(50);
   firstscan = true;
-  m.init(60, 60, 0.1);
+  // m.init(60, 60, 0.1);
   while (ros::ok())
   {
-    m.clearMap();
+    // m.clearMap();
     if (firstscan)
     {
       firstscan = false;
     }
-    m.publish(map_pub);
+    // m.publish(map_pub);
     ros::spinOnce();
     loop_rate.sleep();
   }
